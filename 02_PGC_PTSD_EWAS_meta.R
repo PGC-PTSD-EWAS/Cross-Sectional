@@ -435,7 +435,7 @@ rownames(tstats)<-rownames(DNHS.coef)
 for(ii in 1:ncol(tstats)){
   temp<-get(paste(studies[ii], ".oneSided", sep=""))
   if(!all(names(temp)==rownames(tstats))){break}
-  tstats[, studies[ii]]<-qnorm(1-as.numeric(temp)) # t-statistic from 1-sided p-value
+  tstats[, studies[ii]]<-qnorm(as.numeric(temp)) # t-statistic from 1-sided p-value
   rm(temp)
 }
 
@@ -589,7 +589,7 @@ for(ii in 1:nrow(studies)){
   
   for(ll in 1:length(inc)){
     temp<-get(paste(inc[ll],".oneSided", sep=""))
-    tab[inc[ll], "Zi"]<-qnorm(1-as.numeric(temp[cpg]))
+    tab[inc[ll], "Zi"]<-qnorm(as.numeric(temp[cpg]))
     rm(temp)
   }
   tab[, "Z"]<-tab[, "Zi"]*tab[, "Weight"]
